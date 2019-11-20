@@ -19,6 +19,8 @@ export default {
 </script>
 
 <style>
+/* @import "https://www.w3schools.com/w3css/4/w3.css"; */
+
 #home {
   width: 1000px;
   position: absolute;

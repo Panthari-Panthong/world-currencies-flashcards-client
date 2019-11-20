@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <h1>Results</h1>
-    <p>Percentag : {{percent}}</p>
+    <p>{{percent}}%</p>
 
     <p>{{score}} right</p>
     <p>{{wrong}} wrong</p>

@@ -1,10 +1,14 @@
 <template>
   <div id="cardBottom">
     <div class="card" v-show="showCard">
-      {{ countDown }}
-      <p>SCORE : {{score}}</p>
-      <p>All Question : {{countQuestion}}</p>
-      <p :percentag="percentag()">Percent : {{percent}}</p>
+      <nav class="navbar">
+        <div class="nav-links">All Question : {{countQuestion}}</div>
+        <div class="nav-links" :percentag="percentag()">Percent : {{percent}}</div>
+        <div class="nav-links">{{ countDown }}</div>
+        <div class="nav-links">Right : {{score}}</div>
+        <div class="nav-links">Wrong : {{wrong}}</div>
+      </nav>
+
       <Card
         :front="question.country"
         :back="question.currency + ' ' + '(' + question.iso_code + ')'"
@@ -35,6 +39,7 @@ import Vue from "vue";
 import { url } from "../constants";
 import Card from "./Card";
 import Results from "./Results";
+import "../loading-bar/loading-bar";
 
 export default {
   name: "CardBottom",
@@ -146,6 +151,8 @@ export default {
 
 
 <style scoped>
+@import "../loading-bar/loading-bar.css";
+
 .reset {
   width: 500px;
   position: absolute;
@@ -175,5 +182,19 @@ export default {
 .home-btn:hover,
 .reset-btn:hover {
   background-color: #9b50ba;
+}
+
+.navbar {
+  font-size: 18px;
+  background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf 100%);
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  padding-bottom: 10px;
+  text-align: center;
+  margin: 15px auto;
+}
+
+.nav-links {
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.7);
 }
 </style>
