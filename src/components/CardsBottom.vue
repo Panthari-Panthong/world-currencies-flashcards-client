@@ -1,23 +1,29 @@
 <template>
   <div id="cardBottom">
-    {{ countDown }}
-    <p>SCORE : {{score}}</p>
-    <p>All Question : {{countQuestion}}</p>
-    <p :percentag="percentag()">Percent : {{percent}}</p>
-    <Card
-      :front="question.country"
-      :back="question.currency"
-      v-on:click="showReply"
-      :isQuestion="isQuestion"
-    />
-    <div class="answer" v-show="countDown === 0 ? !showButtons: showButtons">
-      <p>Did you get it right?</p>
-      <button class="yes" v-on:click="nextQuestion(true)">Yes</button>
-      <button class="no" v-on:click="nextQuestion(false)">No</button>
+    <div class="card" v-show="showCard">
+      {{ countDown }}
+      <p>SCORE : {{score}}</p>
+      <p>All Question : {{countQuestion}}</p>
+      <p :percentag="percentag()">Percent : {{percent}}</p>
+      <Card
+        :front="question.country"
+        :back="question.currency + ' ' + '(' + question.iso_code + ')'"
+        v-on:click="showReply"
+        :isQuestion="isQuestion"
+      />
+      <div class="answer" v-show="countDown === 0 ? !showButtons: showButtons">
+        <p>Did you get it right?</p>
+        <button class="yes" v-on:click="nextQuestion(true)">Yes</button>
+        <button class="no" v-on:click="nextQuestion(false)">No</button>
+      </div>
     </div>
 
     <div class="reset" v-show="showResetButtons">
-      <button v-on:click="resetGame()">Reset</button>
+      <Results :score="score" :countQuestion="countQuestion" :percent="percent" :wrong="wrong" />
+      <button v-on:click="resetGame()" class="reset-btn">Start over</button>
+      <router-link :to="{ name: 'Home'}">
+        <button class="home-btn">Back to home</button>
+      </router-link>
     </div>
   </div>
 </template>
@@ -27,12 +33,12 @@ import axios from "axios";
 import Vue from "vue";
 
 import { url } from "../constants";
-import random from "../randomQues";
 import Card from "./Card";
+import Results from "./Results";
 
 export default {
   name: "CardBottom",
-  components: { Card },
+  components: { Card, Results },
   data() {
     return {
       allQuestions: {},
@@ -43,7 +49,9 @@ export default {
       score: 0,
       percent: 0,
       countDown: 10,
-      showResetButtons: false
+      showResetButtons: false,
+      showCard: true,
+      wrong: 0
     };
   },
 
@@ -68,9 +76,9 @@ export default {
     },
 
     nextQuestion: function(answer) {
-      let randomNext = random(this.allQuestions);
+      let randomNext = Math.floor(Math.random() * this.allQuestions.length);
       // console.log("THIS", randomNext);
-      let nextQues = randomNext.shift();
+      let nextQues = this.allQuestions[randomNext];
       // console.log("nextQues", nextQues);
       this.countQuestion += 1;
       this.question = nextQues;
@@ -102,22 +110,28 @@ export default {
       } else if (this.countDown === 0) {
         this.showResetButtons = true;
         this.showButtons = true;
+        this.showCard = false;
       }
+      this.wrong = this.countQuestion - this.score;
     },
 
     resetGame: function() {
-      let questions = random(this.allQuestions);
-      let newQuestion = questions.shift();
+      let randomQues = Math.floor(Math.random() * this.allQuestions.length);
+      // console.log("THIS", randomQues);
+      let newQuestion = this.allQuestions[randomQues];
+      // console.log("nextQues", newQuestion);
 
       this.question = newQuestion;
       this.percent = 0;
       this.score = 0;
       this.countQuestion = 0;
       this.countDown = 10;
+      this.wrong = 0;
       this.showResetButtons = false;
       this.isQuestion = true;
       this.countDownTimer();
       this.showButtons = false;
+      this.showCard = true;
     }
   },
   mounted() {
@@ -130,6 +144,36 @@ export default {
 };
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
+.reset {
+  width: 500px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  text-align: center;
+  background-color: #ffffff;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border-radius: 10px;
+  padding: 2%;
+}
+
+.home-btn,
+.reset-btn {
+  width: 100%;
+  background-color: #8e44ad;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.home-btn:hover,
+.reset-btn:hover {
+  background-color: #9b50ba;
+}
 </style>

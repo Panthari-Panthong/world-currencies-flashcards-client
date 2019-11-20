@@ -6,7 +6,7 @@
       v-show="isQuestion"
       class="animated flipInX flashcard"
     >
-      <div class="card-header" style="padding-bottom: 15px;">{{headerFront}}</div>
+      <div class="card-header" style="padding-bottom: 15px; fontSize:1.5em">{{headerFront}}</div>
       <div class="card-content center">
         <p v-bind:style="{fontSize: textSizeFront,fontWeight: 'bold'}">{{front}}</p>
         <img v-if="imgFront!=''" :src="imgFront" width="200" height="200" />
@@ -19,7 +19,7 @@
       v-show="!isQuestion"
       class="animated flipInX flashcard"
     >
-      <div class="card-header" style="padding-bottom: 15px;">{{headerBack}}</div>
+      <div class="card-header" style="padding-bottom: 15px; fontSize:1.5em">{{headerBack}}</div>
       <div class="card-content center">
         <p v-bind:style="{fontSize: textSizeBack, fontWeight: 'bold'}">{{back}}</p>
         <img v-if="imgBack!=''" :src="imgBack" width="200" height="200" />
@@ -58,11 +58,11 @@ export default {
     },
     textSizeFront: {
       type: String,
-      default: "2em"
+      default: "3em"
     },
     textSizeBack: {
       type: String,
-      default: "2em"
+      default: "3em"
     },
     colorTextFront: {
       type: String,
@@ -78,7 +78,7 @@ export default {
     },
     colorBack: {
       type: String,
-      default: "#889B73"
+      default: "#8E44AD"
     },
     headerFront: {
       type: String,
@@ -136,12 +136,11 @@ export default {
 }
 
 .flashcard:hover::before {
-  /* Show the pseudo-element on hover. */
   opacity: 1;
 }
 
 .animated {
-  animation-duration: 1s;
+  animation-duration: 1.5s;
   animation-fill-mode: both;
 }
 
