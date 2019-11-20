@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div>
     <h1>Results</h1>
     <p>{{percent}}%</p>
 

@@ -1,32 +1,57 @@
 <template>
-  <div id="cardBottom">
-    <div class="card" v-show="showCard">
-      <nav class="navbar">
-        <div class="nav-links">All Question : {{countQuestion}}</div>
+  <div id="cardBottom" class="container mt-5">
+    <div class="full-card" v-show="showCard">
+      <div class="row text-center d-flex justify-content-center pt-5 mb-3">
+        <div class="nav-links">
+          <h6 class="text-uppercase font-weight-bold">All Question : {{countQuestion}}</h6>
+        </div>
         <div class="nav-links" :percentag="percentag()">Percent : {{percent}}</div>
-        <div class="nav-links">{{ countDown }}</div>
         <div class="nav-links">Right : {{score}}</div>
-        <div class="nav-links">Wrong : {{wrong}}</div>
-      </nav>
+      </div>
 
-      <Card
-        :front="question.country"
-        :back="question.currency + ' ' + '(' + question.iso_code + ')'"
-        v-on:click="showReply"
-        :isQuestion="isQuestion"
-      />
-      <div class="answer" v-show="countDown === 0 ? !showButtons: showButtons">
-        <p>Did you get it right?</p>
-        <button class="yes" v-on:click="nextQuestion(true)">Yes</button>
-        <button class="no" v-on:click="nextQuestion(false)">No</button>
+      <div class="progress">
+        <div
+          class="progress-bar progress-bar-striped bg-danger progress-bar-animated"
+          :style="{width:  countDown +'%'}"
+        ></div>
+      </div>
+
+      <div class="col mt-5">
+        <Card
+          :front="question.country"
+          :back="question.currency + ' ' + '(' + question.iso_code + ')'"
+          v-on:click="showReply"
+          :isQuestion="isQuestion"
+        />
+      </div>
+      <div class="row mt-5">
+        <div
+          class="col-md-6 offset-md-3 text-center"
+          v-show="countDown === 0 ? !showButtons: showButtons"
+        >
+          <h3 class="text-white font-weight-bold">Did you know the answer?</h3>
+          <button
+            class="btn btn-labeled btn-success btn-primary btn-lg"
+            v-on:click="nextQuestion(true)"
+          >
+            <span class="btn-label">✅ &nbsp; &nbsp;</span>Yes
+          </button>
+          <button
+            type="button"
+            class="btn btn-labeled btn-danger btn-secondary btn-lg"
+            v-on:click="nextQuestion(false)"
+          >
+            <span class="btn-label">❎&nbsp;&nbsp;No</span>
+          </button>
+        </div>
       </div>
     </div>
 
     <div class="reset" v-show="showResetButtons">
       <Results :score="score" :countQuestion="countQuestion" :percent="percent" :wrong="wrong" />
-      <button v-on:click="resetGame()" class="reset-btn">Start over</button>
+      <button v-on:click="resetGame()" class="btn btn-primary btn-lg btn-block mt-3">Start over</button>
       <router-link :to="{ name: 'Home'}">
-        <button class="home-btn">Back to home</button>
+        <button class="btn btn-secondary btn-lg btn-block mt-3">Back to home</button>
       </router-link>
     </div>
   </div>
@@ -39,7 +64,8 @@ import Vue from "vue";
 import { url } from "../constants";
 import Card from "./Card";
 import Results from "./Results";
-import "../loading-bar/loading-bar";
+import "bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 export default {
   name: "CardBottom",
@@ -53,7 +79,7 @@ export default {
       countQuestion: 0,
       score: 0,
       percent: 0,
-      countDown: 10,
+      countDown: 30,
       showResetButtons: false,
       showCard: true,
       wrong: 0
@@ -130,7 +156,7 @@ export default {
       this.percent = 0;
       this.score = 0;
       this.countQuestion = 0;
-      this.countDown = 10;
+      this.countDown = 30;
       this.wrong = 0;
       this.showResetButtons = false;
       this.isQuestion = true;
@@ -151,8 +177,6 @@ export default {
 
 
 <style scoped>
-@import "../loading-bar/loading-bar.css";
-
 .reset {
   width: 500px;
   position: absolute;
@@ -165,36 +189,5 @@ export default {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 10px;
   padding: 2%;
-}
-
-.home-btn,
-.reset-btn {
-  width: 100%;
-  background-color: #8e44ad;
-  color: white;
-  padding: 14px 20px;
-  margin: 8px 0;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.home-btn:hover,
-.reset-btn:hover {
-  background-color: #9b50ba;
-}
-
-.navbar {
-  font-size: 18px;
-  background-image: linear-gradient(260deg, #2376ae 0%, #c16ecf 100%);
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  padding-bottom: 10px;
-  text-align: center;
-  margin: 15px auto;
-}
-
-.nav-links {
-  text-decoration: none;
-  color: rgba(255, 255, 255, 0.7);
 }
 </style>

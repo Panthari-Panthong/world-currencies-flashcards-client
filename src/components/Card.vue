@@ -6,12 +6,12 @@
       v-show="isQuestion"
       class="animated flipInX flashcard"
     >
-      <div class="card-header" style="padding-bottom: 15px; fontSize:1.5em">{{headerFront}}</div>
+      <div class="card-top" style="padding-bottom: 15px; fontSize:1.5em">{{headerFront}}</div>
       <div class="card-content center">
-        <p v-bind:style="{fontSize: textSizeFront,fontWeight: 'bold'}">{{front}}</p>
+        <p v-bind:style="{fontSize: textSizeFront,fontWeight: 'bold'}">{{front}}?</p>
         <img v-if="imgFront!=''" :src="imgFront" width="200" height="200" />
       </div>
-      <div class="card-footer">{{footerFront}}</div>
+      <div class="card-bottom">{{footerFront}}</div>
     </div>
     <div
       @click="handleClick"
@@ -19,12 +19,12 @@
       v-show="!isQuestion"
       class="animated flipInX flashcard"
     >
-      <div class="card-header" style="padding-bottom: 15px; fontSize:1.5em">{{headerBack}}</div>
+      <div class="card-top" style="padding-bottom: 15px; fontSize:1.5em">{{headerBack}}</div>
       <div class="card-content center">
         <p v-bind:style="{fontSize: textSizeBack, fontWeight: 'bold'}">{{back}}</p>
         <img v-if="imgBack!=''" :src="imgBack" width="200" height="200" />
       </div>
-      <div class="card-footer">{{footerBack}}</div>
+      <div class="card-bottom">{{footerBack}}</div>
     </div>
   </div>
 </template>
@@ -82,7 +82,7 @@ export default {
     },
     headerFront: {
       type: String,
-      default: "Do you know which countries use what kind of money?"
+      default: "What is the currency of"
     },
     headerBack: {
       type: String,
@@ -111,7 +111,7 @@ export default {
 .flashcard {
   cursor: pointer;
   border-radius: 10px;
-  width: 40%;
+  width: 70%;
   margin: auto;
   padding: 50px;
   text-align: center;
