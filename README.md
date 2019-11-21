@@ -1,4 +1,4 @@
-# world-currencies-flashcards-client
+# The World Currency Quiz
 
 > A Vue.js project
 
