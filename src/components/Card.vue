@@ -1,30 +1,31 @@
 <template>
   <div class="cards">
+    <!-- Front card -->
     <div
       @click="handleClick"
       v-bind:style="{backgroundColor: colorFront, color: colorTextFront}"
       v-show="isQuestion"
-      class="animated flipInX flashcard"
+      class="animation flip3D flashcard"
     >
-      <div class="card-top" style="padding-bottom: 15px; fontSize:1.5em">{{headerFront}}</div>
-      <div class="card-content center">
-        <p v-bind:style="{fontSize: textSizeFront,fontWeight: 'bold'}">{{front}}?</p>
-        <img v-if="imgFront!=''" :src="imgFront" width="200" height="200" />
+      <div class="card-top" style="padding-bottom: 15px; fontSize:1.5em">{{frontCardTitle}}</div>
+      <div class="content text-center">
+        <p :style="{fontSize: textSize,fontWeight: 'bold'}">{{front}}?</p>
       </div>
-      <div class="card-bottom">{{footerFront}}</div>
+      <div class="card-bottom">{{frontCardFooter}}</div>
     </div>
+
+    <!-- Back card -->
     <div
       @click="handleClick"
       v-bind:style="{backgroundColor: colorBack, color: colorTextBack}"
       v-show="!isQuestion"
-      class="animated flipInX flashcard"
+      class="animation flip3D flashcard"
     >
-      <div class="card-top" style="padding-bottom: 15px; fontSize:1.5em">{{headerBack}}</div>
-      <div class="card-content center">
-        <p v-bind:style="{fontSize: textSizeBack, fontWeight: 'bold'}">{{back}}</p>
-        <img v-if="imgBack!=''" :src="imgBack" width="200" height="200" />
+      <div class="card-top" style="padding-bottom: 15px; fontSize:1.5em">{{backCardTitle}}</div>
+      <div class="content text-center">
+        <p :style="{fontSize: textSize, fontWeight: 'bold'}">{{back}}</p>
       </div>
-      <div class="card-bottom">{{footerBack}}</div>
+      <div class="card-bottom">{{backCardFooter}}</div>
     </div>
   </div>
 </template>
@@ -40,39 +41,37 @@ export default {
       type: Boolean,
       default: true
     },
-    imgFront: {
+    textSize: {
       type: String,
-      default: ""
+      default: "3em"
     },
-    imgBack: {
-      type: String,
-      default: ""
-    },
+    // Front card
     front: {
       type: String,
       default: ""
-    },
-    back: {
-      type: String,
-      default: ""
-    },
-    textSizeFront: {
-      type: String,
-      default: "3em"
-    },
-    textSizeBack: {
-      type: String,
-      default: "3em"
     },
     colorTextFront: {
       type: String,
       default: "black"
     },
-    colorTextBack: {
+    colorFront: {
       type: String,
       default: "white"
     },
-    colorFront: {
+    frontCardTitle: {
+      type: String,
+      default: "What is the currency of"
+    },
+    frontCardFooter: {
+      type: String,
+      default: "Click to show answer"
+    },
+    //Back card
+    back: {
+      type: String,
+      default: ""
+    },
+    colorTextBack: {
       type: String,
       default: "white"
     },
@@ -80,19 +79,11 @@ export default {
       type: String,
       default: "#8E44AD"
     },
-    headerFront: {
-      type: String,
-      default: "What is the currency of"
-    },
-    headerBack: {
+    backCardTitle: {
       type: String,
       default: "Answer"
     },
-    footerFront: {
-      type: String,
-      default: "Click to show answer"
-    },
-    footerBack: {
+    backCardFooter: {
       type: String,
       default: "Click to review question"
     }
@@ -102,10 +93,6 @@ export default {
 <style scoped>
 .flashcards {
   margin: 0 auto;
-}
-
-.center {
-  text-align: center;
 }
 
 .flashcard {
@@ -120,17 +107,13 @@ export default {
 
 .flashcard::before {
   border-radius: 10px;
-  /* Position the pseudo-element. */
   content: " ";
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-
-  /* Create the box shadow at expanded size. */
   box-shadow: 0 0px 7px rgba(0, 0, 0, 0.4);
-  /* Hidden by default. */
   opacity: 0;
   transition: opacity 500ms;
 }
@@ -139,12 +122,12 @@ export default {
   opacity: 1;
 }
 
-.animated {
+.animation {
   animation-duration: 1.5s;
   animation-fill-mode: both;
 }
 
-@keyframes flipInX {
+@keyframes flip3D {
   from {
     transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
     animation-timing-function: ease-in;
@@ -166,8 +149,8 @@ export default {
   }
 }
 
-.flipInX {
+.flip3D {
   backface-visibility: visible !important;
-  animation-name: flipInX;
+  animation-name: flip3D;
 }
 </style>

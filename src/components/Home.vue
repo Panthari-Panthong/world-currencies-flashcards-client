@@ -1,11 +1,13 @@
 <template>
-  <div id="home">
-    <h1>The World Currency Quiz</h1>
-    <router-link :to="{ name: 'CardsBottom'}" class="start">
-      <button class="start">
-        <p class="start-txt">Start</p>
-      </button>
-    </router-link>
+  <div class="container">
+    <div id="home" class="border border-white rounded-lg">
+      <h1 class="text-white font-weight-bold pt-5 mb-5">The World Currency Game</h1>
+      <router-link :to="{ name: 'CardsBottom'}" class="start">
+        <button class="start">
+          <p class="start-txt">Play</p>
+        </button>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -26,20 +28,11 @@ export default {
   position: absolute;
   top: 50%;
   left: 50%;
-  bottom: 0;
   transform: translate(-50%, -50%);
   overflow: hidden;
   text-align: center;
-  border-style: solid;
-  border-color: #ffffff;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  border-radius: 10px;
-  padding: 2%;
+  padding: 5%;
 }
-/* h1 {
-  color: white;
-  margin-bottom: 10%;
-} */
 
 .start-txt {
   font-weight: bold;

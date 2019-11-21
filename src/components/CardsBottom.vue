@@ -2,18 +2,25 @@
   <div id="cardBottom" class="container mt-5">
     <div class="full-card" v-show="showCard">
       <div class="row text-center d-flex justify-content-center pt-5 mb-3">
-        <div class="nav-links">
-          <h6 class="text-uppercase font-weight-bold">All Question : {{countQuestion}}</h6>
+        <div class="col-md-3 mb-3">
+          <h5 class="text-white font-weight-bold">All Questions : {{countQuestion}}</h5>
         </div>
-        <div class="nav-links" :percentag="percentag()">Percent : {{percent}}</div>
-        <div class="nav-links">Right : {{score}}</div>
+        <div class="col-md-2 mb-3">
+          <h5 class="text-white font-weight-bold" :percentag="percentag()">Percent : {{percent}}%</h5>
+        </div>
+        <div class="col-md-2 mb-3">
+          <h5 class="text-white font-weight-bold">Right : {{score}}</h5>
+        </div>
       </div>
 
-      <div class="progress">
+      <div class="progress" style="height:30px">
         <div
           class="progress-bar progress-bar-striped bg-danger progress-bar-animated"
           :style="{width:  countDown +'%'}"
-        ></div>
+          aria-valuenow="60"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >{{countDown}}s</div>
       </div>
 
       <div class="col mt-5">
@@ -24,6 +31,7 @@
           :isQuestion="isQuestion"
         />
       </div>
+
       <div class="row mt-5">
         <div
           class="col-md-6 offset-md-3 text-center"
@@ -34,14 +42,14 @@
             class="btn btn-labeled btn-success btn-primary btn-lg"
             v-on:click="nextQuestion(true)"
           >
-            <span class="btn-label">✅ &nbsp; &nbsp;</span>Yes
-          </button>
+            <span class="btn-label font-weight-bold">✅ &nbsp; &nbsp;Yes</span>
+          </button>&nbsp;&nbsp;
           <button
             type="button"
             class="btn btn-labeled btn-danger btn-secondary btn-lg"
             v-on:click="nextQuestion(false)"
           >
-            <span class="btn-label">❎&nbsp;&nbsp;No</span>
+            <span class="btn-label font-weight-bold">❎&nbsp;&nbsp;No</span>
           </button>
         </div>
       </div>
@@ -79,7 +87,7 @@ export default {
       countQuestion: 0,
       score: 0,
       percent: 0,
-      countDown: 30,
+      countDown: 60,
       showResetButtons: false,
       showCard: true,
       wrong: 0
@@ -156,7 +164,7 @@ export default {
       this.percent = 0;
       this.score = 0;
       this.countQuestion = 0;
-      this.countDown = 30;
+      this.countDown = 60;
       this.wrong = 0;
       this.showResetButtons = false;
       this.isQuestion = true;

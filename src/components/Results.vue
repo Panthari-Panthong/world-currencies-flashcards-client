@@ -1,10 +1,10 @@
 <template>
   <div>
     <h1>Results</h1>
-    <p>{{percent}}%</p>
+    <h3>{{percent}}%</h3>
 
-    <p>{{score}} right</p>
-    <p>{{wrong}} wrong</p>
+    <h5>{{score}} right</h5>
+    <h5>{{wrong}} wrong</h5>
   </div>
 </template>
 
