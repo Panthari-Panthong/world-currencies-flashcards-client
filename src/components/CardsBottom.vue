@@ -75,6 +75,8 @@ import Results from "./Results";
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+var myTrack = new Audio(require("../audio/Countdown.mp3"));
+
 export default {
   name: "CardBottom",
   components: { Card, Results },
@@ -90,7 +92,8 @@ export default {
       countDown: 60,
       showResetButtons: false,
       showCard: true,
-      wrong: 0
+      wrong: 0,
+      audio: false
     };
   },
 
@@ -145,11 +148,14 @@ export default {
         setTimeout(() => {
           this.countDown -= 1;
           this.countDownTimer();
+          this.audio = true;
+          myTrack.play();
         }, 1000);
       } else if (this.countDown === 0) {
         this.showResetButtons = true;
         this.showButtons = true;
         this.showCard = false;
+        this.audio = false;
       }
       this.wrong = this.countQuestion - this.score;
     },
