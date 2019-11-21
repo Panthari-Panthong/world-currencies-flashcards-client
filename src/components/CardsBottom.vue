@@ -2,13 +2,28 @@
   <div id="cardBottom" class="container mt-5">
     <div class="full-card" v-show="showCard">
       <div class="row text-center d-flex justify-content-center pt-5 mb-3">
-        <div class="col-md-3 mb-3">
+        <div class="col-md-4 mb-3">
           <h5 class="text-white font-weight-bold">All Questions : {{countQuestion}}</h5>
         </div>
-        <div class="col-md-2 mb-3">
-          <h5 class="text-white font-weight-bold" :percentag="percentag()">Percent : {{percent}}%</h5>
+        <!-- <div class="col-md-4 mb-3"> -->
+        <!-- <h5 class="text-white font-weight-bold" :percentag="percentag()">Percent : {{percent}}%</h5> -->
+        <!-- // -->
+
+        <div class="progress-outer">
+          <div class="progress">
+            <div
+              class="progress-bar progress-bar-striped progress-bar-info bg-success"
+              :style="{width:  percent +'%'}"
+              :percentag="percentag()"
+            ></div>
+            <div class="progress-value">
+              <span :percentag="percentag()">{{percent}}</span>%
+            </div>
+          </div>
         </div>
-        <div class="col-md-2 mb-3">
+        <!-- // -->
+        <!-- </div> -->
+        <div class="col-md-4 mb-3">
           <h5 class="text-white font-weight-bold">Right : {{score}}</h5>
         </div>
       </div>
@@ -89,7 +104,7 @@ export default {
       countQuestion: 0,
       score: 0,
       percent: 0,
-      countDown: 60,
+      countDown: 61,
       showResetButtons: false,
       showCard: true,
       wrong: 0,
@@ -170,7 +185,7 @@ export default {
       this.percent = 0;
       this.score = 0;
       this.countQuestion = 0;
-      this.countDown = 60;
+      this.countDown = 61;
       this.wrong = 0;
       this.showResetButtons = false;
       this.isQuestion = true;
@@ -203,5 +218,45 @@ export default {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border-radius: 10px;
   padding: 2%;
+}
+
+.progress-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #000;
+  margin: 0 0 10px;
+}
+.progress-outer {
+  background: #fff;
+  padding: 5px 60px 5px 5px;
+  border: 2px solid #bebfbf;
+  border-radius: 45px;
+  margin-bottom: 20px;
+  position: relative;
+  width: 20%;
+}
+
+.progress {
+  background: #171b3c;
+  border-radius: 20px;
+  margin: 0;
+}
+.progress .progress-bar {
+  border-radius: 20px;
+  box-shadow: none;
+  animation: animate-positive 2s;
+}
+.progress .progress-value {
+  font-size: 15px;
+  font-weight: 700;
+  color: #6b7880;
+  position: absolute;
+  top: 3px;
+  right: 10px;
+}
+@keyframes animate-positive {
+  0% {
+    width: 0;
+  }
 }
 </style>
