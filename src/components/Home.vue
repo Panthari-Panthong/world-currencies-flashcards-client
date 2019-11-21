@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div id="home" class="border border-white rounded-lg">
-      <h1 class="text-white font-weight-bold pt-5 mb-5">The World Currency Game</h1>
+      <h1 class="text-white font-weight-bold pt-5 mb-5">The World Currency Quiz</h1>
       <router-link :to="{ name: 'CardsBottom'}" class="start">
         <button class="start">
           <p class="start-txt">Play</p>
