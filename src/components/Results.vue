@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1>Results</h1>
+    <h1 class="text-uppercase">Results</h1>
     <h3>{{percent}}%</h3>
 
-    <h5>{{score}} right</h5>
+    <h5>{{score}} correct</h5>
     <h5>{{wrong}} wrong</h5>
   </div>
 </template>

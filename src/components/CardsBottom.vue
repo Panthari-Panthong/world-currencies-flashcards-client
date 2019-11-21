@@ -3,7 +3,7 @@
     <div class="full-card" v-show="showCard">
       <div class="row text-center d-flex justify-content-center pt-5 mb-3">
         <div class="col-md-4 mb-3">
-          <h5 class="text-white font-weight-bold">All Questions : {{countQuestion}}</h5>
+          <h5 class="text-white font-weight-bold text-uppercase">All Questions : {{countQuestion}}</h5>
         </div>
         <!-- <div class="col-md-4 mb-3"> -->
         <!-- <h5 class="text-white font-weight-bold" :percentag="percentag()">Percent : {{percent}}%</h5> -->
@@ -24,7 +24,7 @@
         <!-- // -->
         <!-- </div> -->
         <div class="col-md-4 mb-3">
-          <h5 class="text-white font-weight-bold">Right : {{score}}</h5>
+          <h5 class="text-white font-weight-bold text-uppercase">Correct : {{score}}</h5>
         </div>
       </div>
 
@@ -57,14 +57,14 @@
             class="btn btn-labeled btn-success btn-primary btn-lg"
             v-on:click="nextQuestion(true)"
           >
-            <span class="btn-label font-weight-bold">✅ &nbsp; &nbsp;Yes</span>
+            <span class="btn-label font-weight-bold text-uppercase">✅ &nbsp; &nbsp;Yes</span>
           </button>&nbsp;&nbsp;
           <button
             type="button"
             class="btn btn-labeled btn-danger btn-secondary btn-lg"
             v-on:click="nextQuestion(false)"
           >
-            <span class="btn-label font-weight-bold">❎&nbsp;&nbsp;No</span>
+            <span class="btn-label font-weight-bold text-uppercase">❎&nbsp;&nbsp;No</span>
           </button>
         </div>
       </div>
