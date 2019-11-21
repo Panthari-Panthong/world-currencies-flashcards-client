@@ -37,6 +37,7 @@ export default {
 .start-txt {
   font-weight: bold;
   font-size: 25px;
+  margin: auto;
 }
 
 .start {
@@ -72,8 +73,8 @@ export default {
   background-size: 400%;
   z-index: -1;
   filter: blur(5px);
-  width: calc(100% + 4px);
-  height: calc(100% + 4px);
+  width: calc(100% + 10px);
+  height: calc(100% + 10px);
   animation: glowing 20s linear infinite;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
