@@ -4,6 +4,7 @@
 ## What this project is about
 
 This project has created for Hackathon that I had 2.5 days to make the most excellent app and need to use new technologies with the theme of finance.
+
 This game is to test your knowledge about world currency. After you pass play on the homepage, the time will count down; the audio will start automatic play. You have 1 minute to answer as many questions as you can. When you give the right answer, you can click YES, but If you don't know the answer or you provide the wrong answer, you can click NO to go to the next question. When the time is up, you will receive a result with a total of the correct answer, a total of the wrong answer, and include a success rate in percentages.
 
 ## Features
