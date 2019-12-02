@@ -1,5 +1,7 @@
 
 # 💴💷 The World Currency Quiz 💶💵
+## [Check out the deployed version here!](https://world-currency-quiz.herokuapp.com)
+
 
 ## What this project is about
 
