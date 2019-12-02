@@ -24,7 +24,7 @@
         <!-- // -->
         <!-- </div> -->
         <div class="col-md-4 mb-3">
-          <h5 class="text-white font-weight-bold text-uppercase">Correct : {{score}}</h5>
+          <h5 class="text-white font-weight-bold text-uppercase">Score : {{score}}</h5>
         </div>
       </div>
 
